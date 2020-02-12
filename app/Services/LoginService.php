@@ -57,7 +57,17 @@ class LoginService
             'password'  => Hash::hash512($pw)
         ];
 
-        $member = Member::where($where)->pluck('id');
-        return $member[0] ?? 0;
+        $id = 0;
+        $config = new Config();
+        if ($config->isMain(Route::current()->getDomain())) {
+            $member = Member::where($where)->pluck('id');
+            $id = $member[0] ?? 0;
+        }
+        else {
+            $admin = Administrator::where($where)->pluck('id');
+            $id = $admin[0] ?? 0;
+        }
+
+        return $id;
     }
 }

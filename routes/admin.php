@@ -11,6 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('admin/welcome');
-});
+Route::get('/login', 'LoginController@index');
+Route::get('/', 'LoginController@index');
+Route::post('/', 'LoginController@show')->name('adm.login');
