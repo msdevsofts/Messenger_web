@@ -6,7 +6,6 @@ namespace App\System\Config;
 
 class SiteConfig extends Deployment
 {
-
     private $deploymentConfig;
 
     public function __construct() {
@@ -48,6 +47,21 @@ class SiteConfig extends Deployment
      */
     public function getApiHostName(): string {
         return $this->deploymentConfig->getApiHostName();
+    }
+
+    /**
+     * @return string
+     */
+    public function getViewRoot(string $hostName): string {
+        return $this->deploymentConfig->getViewRoot($hostName);
+    }
+
+    public function isMain(string $hostName): bool {
+        return $this->deploymentConfig->isMain($hostName);
+    }
+
+    public function isAdmin(string $hostName): bool {
+        return $this->deploymentConfig->isAdmin($hostName);
     }
 
     /**

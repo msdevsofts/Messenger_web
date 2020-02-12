@@ -40,7 +40,8 @@ class RouteServiceProvider extends ServiceProvider
 
         $this->mapWebRoutes();
 
-        //
+        // 管理画面
+        $this->mapAdminRoutes();
     }
 
     /**
