@@ -27,7 +27,7 @@ class LoginService
         session([
             'id'        => $memberId,
             'unique_id' => $uid,
-            'hash'      => Hash::hash512($pw)
+            'hash'      => $pw
         ]);
 
         return true;
@@ -41,7 +41,7 @@ class LoginService
      * @return bool 検証結果
      */
     public function validation(string $uid, string $pw): bool {
-        return $this->getMemberId($uid, Hash::hash512($pw)) > 0;
+        return $this->getMemberId($uid, $pw) > 0;
     }
 
     /**
