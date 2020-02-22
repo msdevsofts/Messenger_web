@@ -17,6 +17,30 @@ body {
     line-height: 1;
 }
 
+.container {
+    overflow: auto;
+}
+
+.sidebar {
+    width: 300px;
+}
+
+.right {
+    float: right;
+}
+
+.left {
+    float: left;
+}
+
+.hide {
+    display: none;
+}
+
+.text-right {
+    text-align: right;
+}
+
 .link {
     color: #007BFF;
     cursor: pointer;
@@ -24,10 +48,6 @@ body {
 
 .error {
     color: #ff4f4b;
-}
-
-.hide {
-    display: none;
 }
 
 #login {
@@ -40,6 +60,39 @@ body {
     margin: 10px 0;
 }
 
-.right {
-    text-align: right;
+/***************************
+sidebar
+ ***************************/
+.sidebar .prof {
+    height: 100px;
+}
+.sidebar .prof div {
+    display: inline;
+}
+.sidebar .prof img {
+    max-width: 100px;
+    max-height: 100px;
+}
+.sidebar .prof .name {
+    margin: 10px 0;
+    padding: 0 15px;
+}
+.sidebar .prof .name p {
+    margin: 10px 0;
+    line-height: 1.6em;
+}
+
+.sidebar .menu {
+    margin: 15px 0;
+}
+.sidebar .menu li {
+    display: inline-block;
+    width: 144px;
+    height: 48px;
+}
+.sidebar .menu li span {
+    margin: 10px 0;
+    height: 48px;
+    display: inline-block;
+    line-height: 3em;
 }

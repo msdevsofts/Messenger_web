@@ -9,7 +9,14 @@
 <body>
 @include('web/common/nav')
 <div class='container'>
-    @yield('content')
+    @if (!empty(session('unique_id', '')))
+        @include('web/common/left')
+        <div class="container">
+            @yield('content')
+        </div>
+    @else
+        @yield('content')
+    @endif
 </div>
 @include('web/common/scripts')
 </body>

@@ -13,6 +13,6 @@
 
         <div>{{ Form::Submit($isRegister ?? false ? '登録' : 'ログイン', ['class' => 'btn btn-primary form-control', 'name' => 'login']) }}</div>
         {{ Form::close() }}
-        <p class="right"><span id="register" class="link">{{ $isRegister ?? false ? 'ログイン' : '登録' }}する</span></p>
+        <p class="text-right"><span id="register" class="link">{{ $isRegister ?? false ? 'ログイン' : '登録' }}する</span></p>
     </div>
 @endsection
