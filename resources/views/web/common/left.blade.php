@@ -1,11 +1,16 @@
 <div class="sidebar">
     <div class="container prof">
         <div class="left">
-            <img src="https://avatars1.githubusercontent.com/u/24846625?s=400&u=5b6af7b8b6dbb0ca16bf3007cf5d46330d8189e9&v=4" alt="">
+            <img src="{{ asset('img/account_circle-24px.svg') }}" width="100px">
         </div>
         <div class="name left">
+            <p>
+                @if (empty($nickname))
+                    <span class="text-smaller">ニックネーム未設定</span>
+                @else
+                    {{ $nickname }}
+                @endif
             <p>{{ $uniqueId ?? '' }}</p>
-            <p>{{ $nickname ?? '' }}as</p>
         </div>
     </div>
 

@@ -50,6 +50,14 @@ body {
     color: #ff4f4b;
 }
 
+.text-gray {
+    color: #999;
+}
+.text-smaller {
+    font-size: smaller;
+    font-style: italic;
+}
+
 #login {
     width: 400px;
     min-width: 300px;
@@ -76,10 +84,14 @@ sidebar
 .sidebar .prof .name {
     margin: 10px 0;
     padding: 0 15px;
+    width: 170px;
 }
 .sidebar .prof .name p {
     margin: 10px 0;
     line-height: 1.6em;
+}
+.sidebar .prof .name p+p {
+    color: #999;
 }
 
 .sidebar .menu {
@@ -88,11 +100,23 @@ sidebar
 .sidebar .menu li {
     display: inline-block;
     width: 144px;
-    height: 48px;
+    /*height: 48px;*/
 }
 .sidebar .menu li span {
     margin: 10px 0;
-    height: 48px;
+    height: 36px;
+    padding-left: 45px;
     display: inline-block;
-    line-height: 3em;
+    line-height: 2.3em;
+    background-size: 36px 36px;
+    background-repeat: no-repeat;
+}
+.sidebar .menu li .icon_contacts {
+    background-image: url('../img/contacts-24px.svg');
+}
+.sidebar .menu li .icon_message {
+    background-image: url('../img/chat-24px.svg');
+}
+.sidebar .menu li .icon_request {
+    background-image: url('../img/person_add-24px.svg');
 }
