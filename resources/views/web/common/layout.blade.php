@@ -7,17 +7,23 @@
     @include('web/common/stylesheet')
 </head>
 <body>
+
 @include('web/common/nav')
-<div class='container'>
+<div class="container wrapper">
     @if (!empty(session('unique_id', '')))
+        <div class="sidebar left">
         @include('web/common/left')
-        <div class="container">
+        </div>
+
+        <div class="container left">
             @yield('content')
         </div>
     @else
         @yield('content')
     @endif
 </div>
+
 @include('web/common/scripts')
+
 </body>
 </html>
