@@ -16,7 +16,13 @@ class Controller extends BaseController
     protected $viewData = [];
 
     public function __construct() {
+        $commonScripts = [
+            'common/String',
+            'common/config/Default'
+        ];
+
         $this->viewData = [
+            'commonScripts' => $commonScripts,
             'scripts' => $this->scripts
         ];
     }

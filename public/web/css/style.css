@@ -183,3 +183,7 @@ prof
     border-radius: 50%;
     border: 5px solid #666;
 }
+.prof + div .nickname, #nickname {
+    width: 550px;
+    display: inline-block;
+}

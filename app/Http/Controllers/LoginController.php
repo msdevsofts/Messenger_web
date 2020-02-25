@@ -11,7 +11,8 @@ use Illuminate\Http\Request;
 class LoginController extends Controller
 {
     protected $scripts = [
-        'js/login'
+        'login',
+        'prof/edit'
     ];
 
     /**
