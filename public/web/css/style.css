@@ -18,18 +18,12 @@ body {
 }
 
 .container {
+    margin: 15px 0;
     overflow: auto;
 }
 .container.wrapper {
     margin: 0 auto;
     width: 1200px;
-}
-.sidebar + .container {
-    width: 780px;
-}
-
-.sidebar {
-    width: 300px;
 }
 
 .right {
@@ -38,6 +32,11 @@ body {
 
 .left {
     float: left;
+}
+
+.clear {
+    clear: both;
+    overflow: hidden;
 }
 
 .hide {
@@ -53,6 +52,19 @@ body {
     color: #ff4f4b;
 }
 
+.no_spacing {
+    margin: 0;
+    padding: 0;
+}
+
+
+/***************************
+border common
+ ***************************/
+.border_bottom {
+    padding: 10px 0;
+    border-bottom: #999 solid 1px;
+}
 
 /***************************
 text common
@@ -73,6 +85,10 @@ text common
 }
 .text-150 {
     width: 150px;
+    display: inline-block;
+}
+.text-520 {
+    width: 520px;
     display: inline-block;
 }
 
@@ -114,6 +130,12 @@ login
 /***************************
 sidebar
  ***************************/
+.sidebar {
+    width: 300px;
+}
+.sidebar + .container {
+    width: 780px;
+}
 .sidebar .prof {
     height: 100px;
 }
@@ -182,8 +204,4 @@ prof
     height: 200px;
     border-radius: 50%;
     border: 5px solid #666;
-}
-.prof + div .nickname, #nickname {
-    width: 550px;
-    display: inline-block;
 }
