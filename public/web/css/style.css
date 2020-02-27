@@ -205,3 +205,12 @@ prof
     border-radius: 50%;
     border: 5px solid #666;
 }
+.prof #password {
+    padding-bottom: 10px;
+}
+.prof #password input {
+    margin: 5px 0;
+}
+.prof #password input:first-child {
+    margin-top: 0;
+}
