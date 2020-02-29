@@ -25,5 +25,7 @@
 
 @include('web/common/scripts')
 
+@yield('script')
+
 </body>
 </html>

@@ -23,4 +23,13 @@ $(function() {
         }
         return false;
     });
+
+    $('.prof input:reset').click(function(e) {
+        let nicknameSpan = $('.prof span.nickname');
+        nicknameSpan.css('display', 'inline-block').text(initialData['nickname']);
+        nicknameSpan.siblings('input').attr('type', 'hidden');
+        $('.prof span.password').css('display', 'inline-block');
+        $('.prof #password').css('display', 'none');
+        $('.prof #privacy').prop('checked', initialData['isDenySearch']);
+    });
 });

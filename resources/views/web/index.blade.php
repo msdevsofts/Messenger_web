@@ -40,7 +40,7 @@
             </div>
             <div class="container border_bottom">
                 <p class="clear no_spacing">
-                    <label for="privacy" class="text-120 left">プライバシー</label>
+                    <span class="text-120 left">プライバシー</span>
                     <span class="text-520 left">
                         <label>{{ Form::checkbox('privacy', 1, $isDenySearch ?? false, [ 'id' => 'privacy', 'class' => 'privacy' ]) }}IDによる連絡先追加を拒否</label>
                     </span>
@@ -53,4 +53,13 @@
             </div>
         </div>
     {{ Form::close() }}
+@endsection
+
+@section('script')
+    <script>
+        let initialData = @json([
+            'nickname' => empty($nickname) ? \App\System\Config\DefaultConfig::NICKNAME : $nickname,
+            'isDenySearch' => $isDenySearch ?? false
+        ])
+    </script>
 @endsection
