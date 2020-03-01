@@ -33,7 +33,8 @@ class LoginController extends Controller
                 ? $viewService->getLoggedInIndexView() : $viewService->getLoginView();
             $this->viewData += [
                 'uniqueId'  => $loginService->getUniqueId(),
-                'nickname'  => $loginService->getNickname()
+                'nickname'  => $loginService->getNickname(),
+                'sex'       => $loginService->getSex()
             ];
         }
 

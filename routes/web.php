@@ -15,4 +15,4 @@ Route::get('/login', 'LoginController@index');
 Route::get('/', 'LoginController@index');
 Route::post('/', 'LoginController@show')->name('login');
 
-Route::post('/prof/update', function() {})->name('prof.update');
+Route::post('/prof/update', 'ProfileController@update')->name('prof.update');

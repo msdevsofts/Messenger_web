@@ -41,6 +41,16 @@ class LoginService
     }
 
     /**
+     * ログアウト
+     * 
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function logout() {
+        session()->flush();
+        return redirect()->to('/');
+    }
+
+    /**
      * ログイン検証
      *
      * @param string $uid ユニークID

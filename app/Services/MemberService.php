@@ -39,7 +39,7 @@ class MemberService
      */
     public function update(int $memberId, string $pw, string $nickname, string $sex) {
         $member = Member::find($memberId);
-        $member->pw = Hash::hash512($pw);
+        $member->password = Hash::hash512($pw);
         $member->nickname = $nickname;
         $member->sex = $sex;
         $member->save();
