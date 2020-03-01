@@ -38,6 +38,14 @@
                     <span class="edit left"><a href="">編集...</a></span>
                 </p>
             </div>
+            <div class="container border_bottom sex">
+                <p class="clear no_spacing">
+                    <span class="text-120 left">性別</span>
+                    <span id="sex" class="text-520 left">
+                        {{ Form::select('sex', \App\Member::$sexList, old($sex) ?? $sex, [ 'class' => 'form-control hide' ]) }}
+                    </span>
+                </p>
+            </div>
             <div class="container border_bottom">
                 <p class="clear no_spacing">
                     <span class="text-120 left">プライバシー</span>
