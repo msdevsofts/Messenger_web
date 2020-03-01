@@ -11,7 +11,8 @@ use Illuminate\Http\Request;
 class LoginController extends Controller
 {
     protected $scripts = [
-        'js/login'
+        'login',
+        'prof/edit'
     ];
 
     /**
@@ -30,6 +31,11 @@ class LoginController extends Controller
             $loginService = new LoginService();
             $view = $loginService->validation($uid, $pw)
                 ? $viewService->getLoggedInIndexView() : $viewService->getLoginView();
+            $this->viewData += [
+                'uniqueId'  => $loginService->getUniqueId(),
+                'nickname'  => $loginService->getNickname(),
+                'sex'       => $loginService->getSex()
+            ];
         }
 
         return view($view, $this->viewData);
@@ -48,7 +54,7 @@ class LoginController extends Controller
             $memberService = new MemberService();
             if (!empty($uid) && !empty($pw) && $pw === $pwConfirm) {
                 if ($memberService->register($uid, Hash::hash512($pw))) {
-                    return view($viewService->getLoggedInIndexView());
+                    return redirect()->to('/');
                 }
                 $this->viewData['error'] = 'そのIDは既に登録されています';
             }
@@ -60,7 +66,7 @@ class LoginController extends Controller
         else {
             $loginService = new LoginService();
             if (!empty($uid) && !empty($pw) && $loginService->login($uid, Hash::hash512($pw))) {
-                return view($viewService->getLoggedInIndexView());
+                return redirect()->to('/');
             }
             $this->viewData['error'] = 'IDまたはパスワードが違います';
         }
