@@ -20,6 +20,7 @@
     <ul>
         <li><a href="{{ route('contact') }}"><span class="icon_contacts">連絡先</span></a></li>
         <li><a href=""><span class="icon_message">メッセージ</span></a></li>
-        <li><a href=""><span class="icon_request">申請</span></a></li>
+        <li><a href="{{ route('contact.request') }}"><span class="icon_request">申請</span></a></li>
+        <li><a href="{{ route('contact.request.recv') }}"><span class="icon_request_list">申請一覧</span></a></li>
     </ul>
 </div>

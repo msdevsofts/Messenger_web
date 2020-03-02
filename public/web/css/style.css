@@ -190,6 +190,9 @@ sidebar
 .sidebar .menu li .icon_request {
     background-image: url('../img/person_add-24px.svg');
 }
+.sidebar .menu li .icon_request_list {
+    background-image: url('../img/list-24px.svg');
+}
 
 
 /***************************

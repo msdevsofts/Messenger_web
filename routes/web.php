@@ -19,3 +19,8 @@ Route::post('/prof/update', 'ProfileController@update')->name('prof.update');
 
 Route::get('/contacts', 'ContactController@index')->name('contact');
 Route::get('/contacts/{id}', 'ContactController@show')->name('contact.detail');
+
+Route::get('/contacts/request', 'ContactRequestController@index')->name('contact.request');
+Route::post('/contacts/request/send', 'contactRequestController@store')->name('contact.request.send');
+Route::get('/contacts/request/recv', 'ContactRequestController@show')->name('contact.request.recv');
+Route::get('/contacts/request/update', 'ContactRequestController@update')->name('contact.request.update');
