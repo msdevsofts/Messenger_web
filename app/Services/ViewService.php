@@ -38,6 +38,14 @@ class ViewService
         return $this->getViewRoot() . '/index';
     }
 
+    public function getContactListView() {
+        return $this->config->getViewRoot($this->config->getMainHostName()) . '/contacts/index';
+    }
+
+    public function getContactDetailView() {
+        return $this->config->getViewRoot($this->config->getMainHostName()) . '/contacts/detail';
+    }
+
     private function getViewRoot() {
         return $this->config->getViewRoot(Route::current()->getDomain());
     }

@@ -18,7 +18,7 @@
 
 <div class="container menu">
     <ul>
-        <li><a href=""><span class="icon_contacts">連絡先</span></a></li>
+        <li><a href="{{ route('contact') }}"><span class="icon_contacts">連絡先</span></a></li>
         <li><a href=""><span class="icon_message">メッセージ</span></a></li>
         <li><a href=""><span class="icon_request">申請</span></a></li>
     </ul>

@@ -16,3 +16,6 @@ Route::get('/', 'LoginController@index');
 Route::post('/', 'LoginController@show')->name('login');
 
 Route::post('/prof/update', 'ProfileController@update')->name('prof.update');
+
+Route::get('/contacts', 'ContactController@index')->name('contact');
+Route::get('/contacts/{id}', 'ContactController@show')->name('contact.detail');
