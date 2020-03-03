@@ -6,7 +6,7 @@
             <p>未処理の申請はありません。</p>
         </div>
     @else
-        <div class="container">
+        <div class="container contact_request">
             {{ Form::open([ 'url' => route('contact.request.update') ]) }}
             {{ Form::token() }}
             <table>

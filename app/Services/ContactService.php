@@ -6,6 +6,7 @@ namespace App\Services;
 
 use App\Contact;
 use App\ContactRequest;
+use App\Member;
 
 class ContactService
 {
@@ -47,6 +48,23 @@ class ContactService
                 'members.sex'
             ])->toArray();
         return $contact[array_key_first($contact)] ?? [];
+    }
+
+    public function getRequestableContacts() {
+        $contacts = Contact::where([
+                'id' => $this->memberId,
+                'removed_at' => null
+            ])
+            ->pluck('target_id')->toArray();
+        $contacts = Member::whereNotIn('id', $contacts)
+            ->get([
+                'members.id',
+                'members.unique_id',
+                'members.nickname',
+                'members.sex'
+            ])
+            ->toArray();
+        return $contacts;
     }
 
     public function getReceivedContactRequests() {

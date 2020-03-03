@@ -17,6 +17,13 @@ class ContactRequestController extends Controller
             return $loginService->logout();
         }
 
+        $contactService = new ContactService($loginService->getMemberId());
+        $this->viewData += [
+            'members' => $contactService->getRequestableContacts()
+        ];
+
+        $viewService = new ViewService();
+        return view($viewService->getContactRequestView(), $this->viewData);
     }
 
     public function store(Request $request) {

@@ -230,3 +230,30 @@ prof
     margin: 0 15px;
     width: 317px;
 }
+
+/***************************
+contact request
+ ***************************/
+.contact_request table tr {
+    border: solid 1px #999;
+    border-width: 1px 0;
+}
+.contact_request table th:nth-child(2) {
+    width: 550px;
+}
+.contact_request table td:first-child {
+    width: 80px;
+    height: 60px;
+}
+.contact_request table td:last-child {
+    padding: 10px 15px;
+    width: 90px;
+}
+.contact_request .prof_img {
+    background-size: 48px 48px;
+    background-repeat: no-repeat;
+    margin: 6px 16px;
+    width: 48px;
+    height: 48px;
+    display: inline-block;
+}
