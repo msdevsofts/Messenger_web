@@ -63,6 +63,25 @@ class ContactRequestService
         ])->toArray();
     }
 
+    public function getReceivedContactRequests() {
+        $contacts = ContactRequest::join('members', 'members.id', '=', 'contact_requests.id')
+            ->where([
+                'contact_requests.target_id' => $this->memberId,
+                'contact_requests.accepted_at' => null,
+                'contact_requests.refused_at' => null,
+                'members.removed_at' => null
+            ])
+            ->orderBy('contact_requests.requested_at', 'desc')
+            ->get([
+                'members.id',
+                'members.unique_id',
+                'members.nickname',
+                'contact_requests.requested_at'
+            ])
+            ->toArray();
+        return $contacts ?? [];
+    }
+
     private function isReceived($targetId) {
         $contacts = ContactRequest::where([
             'id' => $targetId,

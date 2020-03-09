@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\ContactRequestService;
 use App\Services\ContactService;
 use App\Services\LoginService;
 use App\Services\ViewService;
+use Illuminate\Http\Request;
 
-class ContactController extends Controller
+class ContactReceivedRequestController extends Controller
 {
-    public function index() {
+    public function show() {
         $loginService = new LoginService();
         $uid = session('unique_id', '');
         $pw = session('hash', '');
@@ -16,12 +18,12 @@ class ContactController extends Controller
             return $loginService->logout();
         }
 
-        $contactService = new ContactService($loginService->getMemberId());
+        $contactRequestService = new ContactRequestService($loginService->getMemberId());
         $this->viewData += [
-            'contacts' => $contactService->getContacts()
+            'members' => $contactRequestService->getReceivedContactRequests()
         ];
 
         $viewService = new ViewService();
-        return view($viewService->getContactListView(), $this->viewData);
+        return view($viewService->getReceivedContactRequestView(), $this->viewData);
     }
 }
