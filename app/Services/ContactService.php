@@ -50,21 +50,31 @@ class ContactService
         return $contact[array_key_first($contact)] ?? [];
     }
 
-    public function getRequestableContacts() {
-        $contacts = Contact::where([
-                'id' => $this->memberId,
-                'removed_at' => null
+    public function getRequestableContacts(? string $searchName = '') {
+        $query = Member::leftJoin('contacts', function ($join) {
+                $join->on('contacts.target_id', '=', 'members.id')
+                    ->where('contacts.id', '=', $this->memberId);
+            })
+            ->where([
+                'contacts.removed_at' => null,
+                'members.removed_at' => null
             ])
-            ->pluck('target_id')->toArray();
-        $contacts = Member::whereNotIn('id', $contacts)
-            ->get([
+            ->where('members.id', '<>', $this->memberId);
+        if (!empty($searchName)) {
+            $query->where(function ($query) use ($searchName) {
+                $tmp = '%' . $searchName . '%';
+                $query->where('members.unique_id', 'LIKE', $tmp)
+                    ->orWhere('members.nickname', 'LIKE', $tmp);
+            });
+        }
+
+        return $query->get([
                 'members.id',
                 'members.unique_id',
                 'members.nickname',
                 'members.sex'
             ])
             ->toArray();
-        return $contacts;
     }
 
     public function getReceivedContactRequests() {

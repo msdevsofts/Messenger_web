@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\ContactRequestService;
 use App\Services\ContactService;
 use App\Services\LoginService;
 use App\Services\ViewService;
@@ -9,6 +10,10 @@ use Illuminate\Http\Request;
 
 class ContactRequestController extends Controller
 {
+    protected $scripts = [
+        'contacts/request'
+    ];
+
     public function index() {
         $loginService = new LoginService();
         $uid = session('unique_id', '');
@@ -26,7 +31,7 @@ class ContactRequestController extends Controller
         return view($viewService->getContactRequestView(), $this->viewData);
     }
 
-    public function store(Request $request) {
+    public function store($id) {
         $loginService = new LoginService();
         $uid = session('unique_id', '');
         $pw = session('hash', '');
@@ -34,9 +39,28 @@ class ContactRequestController extends Controller
             return $loginService->logout();
         }
 
+        if ($id == 0) {
+            exit(json_encode([
+                'status' => 400,
+                'message' => 'traget id is incorrect'
+            ]));
+        }
+
+        $response = [];
+        $contactRequestService = new ContactRequestService($loginService->getMemberId());
+        if ($contactRequestService->request((int)$id)) {
+            $response = [ 'status' => 200 ];
+        }
+        else {
+            $response = [
+                'status' => 400,
+                'message' => 'failure'
+            ];
+        }
+        exit(json_encode($response));
     }
 
-    public function show() {
+    public function show(Request $request) {
         $loginService = new LoginService();
         $uid = session('unique_id', '');
         $pw = session('hash', '');
@@ -46,10 +70,10 @@ class ContactRequestController extends Controller
 
         $contactService = new ContactService($loginService->getMemberId());
         $this->viewData += [
-            'contacts' => $contactService->getReceivedContactRequests()
+            'members' => $contactService->getRequestableContacts($request->input('name') ?? '')
         ];
 
         $viewService = new ViewService();
-        return view($viewService->getReceivedContactRequestView(), $this->viewData);
+        return view($viewService->getContactRequestView(), $this->viewData);
     }
 }
