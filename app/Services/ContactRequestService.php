@@ -6,6 +6,7 @@ namespace App\Services;
 
 use App\Contact;
 use App\ContactRequest;
+use App\Member;
 
 class ContactRequestService
 {
@@ -37,6 +38,30 @@ class ContactRequestService
     public function accept($targetId) {}
 
     public function refuse($targetId) {}
+
+    public function getRequestableContacts(? string $searchName = '') {
+        $union = Contact::where([ 'id' => $this->memberId, 'removed_at' => null ])
+            ->select([ 'id' ])
+            ->union(ContactRequest::where([ 'target_id' => $this->memberId ])->select([ 'id' ]))
+            ->union(ContactRequest::where([ 'id' => $this->memberId ])->select([ 'target_id AS id' ]));
+        $query = Member::where('id', '<>', $this->memberId)
+            ->whereNull('removed_at')
+            ->whereNotIn('id', $union);
+        if (!empty($searchName)) {
+            $query->where(function ($query) use ($searchName) {
+                $tmp = '%' . $searchName . '%';
+                $query->where('unique_id', 'LIKE', $tmp)
+                    ->orWhere('nickname', 'LIKE', $tmp);
+            });
+        }
+
+        return $query->get([
+            'id',
+            'unique_id',
+            'nickname',
+            'sex'
+        ])->toArray();
+    }
 
     private function isReceived($targetId) {
         $contacts = ContactRequest::where([

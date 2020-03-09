@@ -22,9 +22,9 @@ class ContactRequestController extends Controller
             return $loginService->logout();
         }
 
-        $contactService = new ContactService($loginService->getMemberId());
+        $contactRequestService = new ContactRequestService($loginService->getMemberId());
         $this->viewData += [
-            'members' => $contactService->getRequestableContacts()
+            'members' => $contactRequestService->getRequestableContacts()
         ];
 
         $viewService = new ViewService();
@@ -68,9 +68,9 @@ class ContactRequestController extends Controller
             return $loginService->logout();
         }
 
-        $contactService = new ContactService($loginService->getMemberId());
+        $contactRequestService = new ContactRequestService($loginService->getMemberId());
         $this->viewData += [
-            'members' => $contactService->getRequestableContacts($request->input('name') ?? '')
+            'members' => $contactRequestService->getRequestableContacts($request->input('name') ?? '')
         ];
 
         $viewService = new ViewService();
