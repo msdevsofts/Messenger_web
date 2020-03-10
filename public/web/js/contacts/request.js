@@ -17,13 +17,17 @@ class Request extends SendData {
         super(url.sendRequest + '/' + targetId, 'get');
     }
 
-    onDone() {
-        super.onDone();
-        alert('申請しました');
+    onSuccess(data) {
+        super.onSuccess(data);
+        if ((data.status || 0) === 200) {
+            alert('申請しました');
+        }
+        else {
+            alert('申請に失敗しました');
+        }
     }
 
-    onFail() {
-        super.onFail();
-        alert('申請に失敗しました');
+    onError() {
+        super.onError();
     }
 }

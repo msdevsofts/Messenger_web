@@ -13,11 +13,13 @@ class SendData {
             dataType: "json",
             data: data
         })
-            .done(this.onDone())
-            .fail(this.onFail());
+            .then(
+                this.onSuccess(data),
+                this.onError()
+            );
     }
 
-    onDone() {}
+    onSuccess(data) {}
 
-    onFail() {}
+    onError() {}
 }
