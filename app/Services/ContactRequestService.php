@@ -35,9 +35,31 @@ class ContactRequestService
         ]);
     }
 
-    public function accept($targetId) {}
+    public function accept($targetId) {
+        $now = date('Y-m-d H:i:s');
+        $result = $this->getRequestContactQuery($targetId)
+            ->update([ 'accepted_at' => $now ]);
 
-    public function refuse($targetId) {}
+        if ($result) {
+            Contact::insertOrIgnore([
+                'id' => $this->memberId,
+                'target_id' => $targetId,
+                'created_at' => $now
+            ]);
+            Contact::insertOrIgnore([
+                'id' => $targetId,
+                'target_id' => $this->memberId,
+                'created_at' => $now
+            ]);
+        }
+
+        return $result;
+    }
+
+    public function refuse($targetId) {
+        return $this->getRequestContactQuery($targetId)
+            ->update([ 'refused_at' => date('Y-m-d H:i:s') ]);
+    }
 
     public function getRequestableContacts(? string $searchName = '') {
         $union = Contact::where([ 'id' => $this->memberId, 'removed_at' => null ])
@@ -108,5 +130,19 @@ class ContactRequestService
         ])
             ->get()->toArray();
         return !empty($contacts);
+    }
+
+    private function getRequestContactQuery($targetId) {
+        return ContactRequest::orWhere(function ($query) use ($targetId) {
+            $query->where([
+                'id' => $this->memberId,
+                'target_id' => $targetId
+            ]);
+        })->orWhere(function ($query) use ($targetId) {
+            $query->where([
+                'id' => $targetId,
+                'target_id' => $this->memberId
+            ]);
+        });
     }
 }

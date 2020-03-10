@@ -76,4 +76,27 @@ class ContactRequestController extends Controller
         $viewService = new ViewService();
         return view($viewService->getContactRequestView(), $this->viewData);
     }
+
+    public function update(Request $request) {
+        $loginService = new LoginService();
+        $uid = session('unique_id', '');
+        $pw = session('hash', '');
+        if (!$loginService->validation($uid, $pw)) {
+            return $loginService->logout();
+        }
+
+        $contactRequestService = new ContactRequestService($loginService->getMemberId());
+
+        $accept = $request->post('accept') ?? [];
+        foreach ($accept as $key => $val) {
+            $contactRequestService->accept($key);
+        }
+
+        $refuse = $request->post('refuse') ?? [];
+        foreach ($refuse as $key => $val) {
+            $contactRequestService->refuse($key);
+        }
+
+        return redirect()->route('contact.request.recv');
+    }
 }
