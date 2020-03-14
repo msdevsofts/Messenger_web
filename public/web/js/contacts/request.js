@@ -19,12 +19,7 @@ class Request extends SendData {
 
     onSuccess(data) {
         super.onSuccess(data);
-        if ((data.status || 0) === 200) {
-            alert('申請しました');
-        }
-        else {
-            alert('申請に失敗しました');
-        }
+        alert('申請しました');
     }
 
     onError() {
