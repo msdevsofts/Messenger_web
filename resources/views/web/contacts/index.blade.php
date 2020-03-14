@@ -8,10 +8,9 @@
     @else
         @foreach($contacts as $member)
             <div class="container contact">
-                <a href="{{ route('contact.detail', [ 'id' => $member['target_id'] ]) }}">
-                    <span class="prof_img" style="background-image: url('{{ asset(\App\System\Config\DefaultConfig::IMG_PROF) }}')">
-                        {{ empty($member['nickname']) ? $member['unique_id'] : $member['nickname'] }}
-                    </span>
+                <a href="{{ route('contact.detail', [ 'id' => $member['id'] ]) }}">
+                    <span class="prof_img" style="background-image: url('{{ asset(\App\System\Config\DefaultConfig::IMG_PROF) }}')"></span>
+                    {{ empty($member['nickname']) ? $member['unique_id'] : $member['nickname'] }}
                 </a>
             </div>
         @endforeach

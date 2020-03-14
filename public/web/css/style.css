@@ -265,3 +265,21 @@ contact request
     height: 48px;
     display: inline-block;
 }
+
+
+/***************************
+contact
+ ***************************/
+.container.contact {
+    width: 145px;
+    display: inline-flex;
+    text-align: center;
+}
+.contact .prof_img {
+    background-size: 100px 100px;
+    background-repeat: no-repeat;
+    margin: 6px 4px;
+    width: 100px;
+    height: 100px;
+    display: inline-block;
+}
