@@ -38,7 +38,7 @@ class ContactService
             ->where([
                 'contacts.id' => $this->memberId,
                 'contacts.target_id' => $targetId,
-                'contacts.deleted_at' => null,
+                'contacts.removed_at' => null,
                 'members.removed_at' => null
             ])
             ->get([
