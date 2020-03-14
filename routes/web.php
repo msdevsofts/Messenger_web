@@ -16,3 +16,11 @@ Route::get('/', 'LoginController@index');
 Route::post('/', 'LoginController@show')->name('login');
 
 Route::post('/prof/update', 'ProfileController@update')->name('prof.update');
+
+Route::get('/contacts', 'ContactController@index')->name('contact');
+Route::get('/contacts/request', 'ContactRequestController@index')->name('contact.request');
+Route::get('/contacts/{id}', 'ContactController@show')->name('contact.detail');
+Route::post('/contacts/request/search', 'ContactRequestController@show')->name('contact.request.search');
+Route::get('/contacts/request/send/{id}', 'contactRequestController@store')->name('contact.request.send');
+Route::get('/contacts/request/recv', 'ContactReceivedRequestController@show')->name('contact.request.recv');
+Route::post('/contacts/request/update', 'ContactRequestController@update')->name('contact.request.update');

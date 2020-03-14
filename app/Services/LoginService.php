@@ -42,7 +42,7 @@ class LoginService
 
     /**
      * ログアウト
-     * 
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function logout() {

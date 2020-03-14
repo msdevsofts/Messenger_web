@@ -18,7 +18,9 @@ class Controller extends BaseController
     public function __construct() {
         $commonScripts = [
             'common/String',
-            'common/config/Default'
+            'common/config/Default',
+            'common/config/ApiUrl',
+            'common/SendData'
         ];
 
         $this->viewData = [

@@ -79,6 +79,10 @@ text common
     font-size: smaller;
     font-style: italic;
 }
+.text-100 {
+    width: 100px;
+    display: inline-block;
+}
 .text-120 {
     width: 120px;
     display: inline-block;
@@ -89,6 +93,10 @@ text common
 }
 .text-520 {
     width: 520px;
+    display: inline-block;
+}
+.text-550 {
+    width: 550px;
     display: inline-block;
 }
 
@@ -190,6 +198,9 @@ sidebar
 .sidebar .menu li .icon_request {
     background-image: url('../img/person_add-24px.svg');
 }
+.sidebar .menu li .icon_request_list {
+    background-image: url('../img/list-24px.svg');
+}
 
 
 /***************************
@@ -226,4 +237,49 @@ prof
 .prof input.btn {
     margin: 0 15px;
     width: 317px;
+}
+
+/***************************
+contact request
+ ***************************/
+.contact_request table tr {
+    border: solid 1px #999;
+    border-width: 1px 0;
+}
+.contact_request table td:first-child {
+    width: 80px;
+    height: 60px;
+}
+.contact_request table td:nth-child(2) {
+    width: 550px;
+}
+.contact_request table td:last-child {
+    padding: 10px 15px;
+    width: 90px;
+}
+.contact_request .prof_img {
+    background-size: 48px 48px;
+    background-repeat: no-repeat;
+    margin: 6px 16px;
+    width: 48px;
+    height: 48px;
+    display: inline-block;
+}
+
+
+/***************************
+contact
+ ***************************/
+.container.contact {
+    width: 145px;
+    display: inline-flex;
+    text-align: center;
+}
+.contact .prof_img {
+    background-size: 100px 100px;
+    background-repeat: no-repeat;
+    margin: 6px 4px;
+    width: 100px;
+    height: 100px;
+    display: inline-block;
 }
