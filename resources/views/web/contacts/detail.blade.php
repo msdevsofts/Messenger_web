@@ -2,9 +2,7 @@
 
 @section('content')
     <div class="prof">
-        <a href="">
-            <div id="prof_img" style="background-image: url('{{ asset(\App\System\Config\DefaultConfig::IMG_PROF) }}')"></div>
-        </a>
+        <div id="prof_img" style="background-image: url('{{ asset(\App\System\Config\DefaultConfig::IMG_PROF) }}')"></div>
     </div>
 
     <div class="prof">
