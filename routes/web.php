@@ -24,3 +24,6 @@ Route::post('/contacts/request/search', 'ContactRequestController@show')->name('
 Route::get('/contacts/request/send/{id}', 'contactRequestController@store')->name('contact.request.send');
 Route::get('/contacts/request/recv', 'ContactReceivedRequestController@show')->name('contact.request.recv');
 Route::post('/contacts/request/update', 'ContactRequestController@update')->name('contact.request.update');
+
+Route::get('/message/{id}', 'MessageController@index')->name('message');
+Route::get('/message', 'MessageListController@index')->name('message.list');

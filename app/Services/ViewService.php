@@ -54,6 +54,10 @@ class ViewService
         return $this->config->getViewRoot($this->config->getMainHostName()) . '/contacts/request_recv';
     }
 
+    public function getMessageListView() {
+        return $this->config->getViewRoot($this->config->getMainHostName() . '/message/index');
+    }
+
     private function getViewRoot() {
         return $this->config->getViewRoot(Route::current()->getDomain());
     }
