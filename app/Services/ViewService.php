@@ -55,7 +55,7 @@ class ViewService
     }
 
     public function getMessageListView() {
-        return $this->config->getViewRoot($this->config->getMainHostName() . '/message/index');
+        return $this->config->getViewRoot($this->config->getMainHostName()) . '/message/index';
     }
 
     private function getViewRoot() {
