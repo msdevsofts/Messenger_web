@@ -20,9 +20,8 @@ class MessageListController extends Controller
 
         $messageListService = new MessageListService($loginService->getMemberId());
         $this->viewData += [
-            'messageList' => $messageListService->getMessageList()
+            'list' => $messageListService->getMessageList()
         ];
-        dd($this->viewData['messageList']);
 
         $viewService = new ViewService();
         return view($viewService->getMessageListView(), $this->viewData);
