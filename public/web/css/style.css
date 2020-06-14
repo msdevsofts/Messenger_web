@@ -91,12 +91,20 @@ text common
     width: 150px;
     display: inline-block;
 }
+.text-240 {
+    width: 240px;
+    display: inline-block;
+}
 .text-520 {
     width: 520px;
     display: inline-block;
 }
 .text-550 {
     width: 550px;
+    display: inline-block;
+}
+.text-100per {
+    width: 100%;
     display: inline-block;
 }
 
@@ -281,5 +289,46 @@ contact
     margin: 6px 4px;
     width: 100px;
     height: 100px;
+    display: inline-block;
+}
+
+
+/***************************
+message contact list
+ ***************************/
+.container.message_contact.modal {
+    position: relative;
+    height: 600px;
+    width: 400px;
+    border-radius: 10px;
+    border: 0;
+}
+.container.message_contact.modal .close {
+    font-size: 1rem;
+}
+.container.message_contact .container {
+    height: 520px;
+}
+.container.message_contact table tr {
+    border: solid 1px #999;
+    border-width: 1px 0;
+}
+.message_contact table td:first-child {
+    width: 80px;
+    height: 60px;
+}
+.message_contact table td:nth-child(2) {
+    width: 550px;
+}
+.message_contact table td:last-child {
+    padding: 10px 15px;
+    width: 90px;
+}
+.message_contact .prof_img {
+    background-size: 48px 48px;
+    background-repeat: no-repeat;
+    margin: 6px 16px;
+    width: 48px;
+    height: 48px;
     display: inline-block;
 }

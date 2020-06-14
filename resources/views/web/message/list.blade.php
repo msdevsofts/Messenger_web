@@ -1,3 +1,8 @@
+<div class="container">
+    <a href="" id="mew_message"><span class="list">新規メッセージ作成</span></a>
+</div>
+@include('web/message/contact_popup')
+
 @if (empty($list))
     <div class="container">
         <p>メッセージはありません。</p>

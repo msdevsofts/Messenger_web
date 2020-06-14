@@ -27,3 +27,4 @@ Route::post('/contacts/request/update', 'ContactRequestController@update')->name
 
 Route::get('/message/{id}', 'MessageController@index')->name('message');
 Route::get('/message', 'MessageListController@index')->name('message.list');
+Route::post('/message/new', 'MessageListController@create')->name('message.new');
