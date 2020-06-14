@@ -36,6 +36,20 @@ class MessageListController extends Controller
     }
 
     public function create(Request $request) {
+        $loginService = new LoginService();
+        $uid = session('unique_id', '');
+        $pw = session('hash', '');
+        if (!$loginService->validation($uid, $pw)) {
+            return $loginService->logout();
+        }
 
+        $memberIdList = $request->post('member') ?? array();
+        if (empty($memberIdList)) {
+            redirect()->route('message.list');
+        }
+
+        $messageListService = new MessageListService($loginService->getMemberId());
+        $messageListId = $messageListService->addMessageList($memberIdList);
+        return redirect()->route('message', [ 'id' => $messageListId ]);
     }
 }
