@@ -18,9 +18,14 @@ class MessageListService
         $this->memberId = $memberId;
     }
 
-    public function getMessageList() {
+    /**
+     * メッセージ一覧を取得する
+     *
+     * @return array メッセージ一覧
+     */
+    public function getMessageList(): array {
         return MessageList::join('message_members', 'message_members.id', '=', 'message_lists.id')
-            ->joinSub(
+            ->leftJoinSub(
                 function ($query) {
                     $query->select([
                             DB::raw('distinct(message_list_id)'),
