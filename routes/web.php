@@ -25,6 +25,6 @@ Route::get('/contacts/request/send/{id}', 'contactRequestController@store')->nam
 Route::get('/contacts/request/recv', 'ContactReceivedRequestController@show')->name('contact.request.recv');
 Route::post('/contacts/request/update', 'ContactRequestController@update')->name('contact.request.update');
 
-Route::get('/message/{id}', 'MessageController@index')->name('message');
+Route::get('/message/{id}', 'MessageController@show')->name('message');
 Route::get('/message', 'MessageListController@index')->name('message.list');
 Route::post('/message/new', 'MessageListController@create')->name('message.new');

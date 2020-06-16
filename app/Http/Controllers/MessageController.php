@@ -3,6 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Message;
+use App\Services\ContactService;
+use App\Services\LoginService;
+use App\Services\MessageListService;
+use App\Services\MessageService;
+use App\Services\ViewService;
 use Illuminate\Http\Request;
 
 class MessageController extends Controller
@@ -44,9 +49,26 @@ class MessageController extends Controller
      * @param  \App\Message  $message
      * @return \Illuminate\Http\Response
      */
-    public function show(Message $message)
+    public function show($id, Message $message)
     {
-        //
+        $loginService = new LoginService();
+        $uid = session('unique_id', '');
+        $pw = session('hash', '');
+        if (!$loginService->validation($uid, $pw)) {
+            return $loginService->logout();
+        }
+
+        $messageListService = new MessageListService($loginService->getMemberId());
+        $messageService = new MessageService($loginService->getMemberId());
+        $contactService = new ContactService($loginService->getMemberId());
+        $this->viewData += [
+            'list' => $messageListService->getMessageList(),
+            'messages' => $messageService->getMessage($id),
+            'contacts' => $contactService->getContacts()
+        ];
+
+        $viewService = new ViewService();
+        return view($viewService->getMessageListView(), $this->viewData);
     }
 
     /**
