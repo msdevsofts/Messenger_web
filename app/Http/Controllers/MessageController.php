@@ -12,6 +12,10 @@ use Illuminate\Http\Request;
 
 class MessageController extends Controller
 {
+    protected $scripts = [
+        'message/PostMessage'
+    ];
+
     /**
      * Display a listing of the resource.
      *
@@ -62,6 +66,8 @@ class MessageController extends Controller
         $messageService = new MessageService($loginService->getMemberId());
         $contactService = new ContactService($loginService->getMemberId());
         $this->viewData += [
+            'id' => (int)$id,
+            'memberId' => $loginService->getMemberId(),
             'list' => $messageListService->getMessageList(),
             'messages' => $messageService->getMessage($id),
             'contacts' => $contactService->getContacts()

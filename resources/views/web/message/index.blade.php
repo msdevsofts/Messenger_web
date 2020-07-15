@@ -1,7 +1,7 @@
 @extends('web/common/layout')
 
 @section('content')
-    <div class="container message left">
+    <div class="container message message_list left">
         @include('web/message/list')
     </div>
 

@@ -294,6 +294,22 @@ contact
 
 
 /***************************
+message list
+ ***************************/
+.container.message_list {
+    width: 250px;
+}
+.message_list .list.talk {
+    border-top: solid 1px #999;
+    border-bottom: solid 1px #999;
+    border-collapse: collapse;
+}
+.message_list .talk_name {
+    margin: 10px 0;
+    display: inline-block;
+}
+
+/***************************
 message contact list
  ***************************/
 .container.message_contact.modal {
@@ -331,4 +347,18 @@ message contact list
     width: 48px;
     height: 48px;
     display: inline-block;
+}
+
+/***************************
+message
+ ***************************/
+.message textarea {
+    resize: none;
+}
+.message .submit {
+    margin-left: 10px;
+    height: 100%;
+}
+.message .submit input[type=submit] {
+    height: 100%;
 }
