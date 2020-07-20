@@ -31,9 +31,35 @@ class MessageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id, Request $request)
     {
-        //
+        $loginService = new LoginService();
+        $uid = session('unique_id', '');
+        $pw = session('hash', '');
+        if (!$loginService->validation($uid, $pw)) {
+            return $loginService->logout();
+        }
+
+        $response = [];
+        $message = $request->post('message') ?? '';
+        if (!empty($message)) {
+            $messageService = new MessageService($loginService->getMemberId());
+            $result = $messageService->postMessage($id, $message);
+            if (empty($result)) {
+                $response = [
+                    'status' => 400,
+                    'message' => 'failure'
+                ];
+            }
+            else {
+                $response = [
+                    'status' => 200,
+                    'data' => $result
+                ];
+            }
+        }
+
+        exit(json_encode($response));
     }
 
     /**

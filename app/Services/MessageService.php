@@ -41,16 +41,17 @@ class MessageService
      *
      * @param int $messageListId メッセージリストID
      * @param string $message メッセージ
-     * @return bool 投稿の成否
+     * @return array 投稿結果
      */
-    public function postMessage(int $messageListId, string $message): bool {
-        return Message::insert([
-            'message_list_id' => $messageListId,
-            'member_id' => $this->memberId,
-            'message' => $message,
-            'ipv4' => Network::getIpv4Addr(),
-            'ipv6' => Network::getIpv6Addr()
-        ]);
+    public function postMessage(int $messageListId, string $message): array {
+        $newMessage = new Message();
+        $newMessage->message_list_id = $messageListId;
+        $newMessage->member_id = $this->memberId;
+        $newMessage->message = $message;
+        $newMessage->ipv4 = Network::getIpv4Addr();
+        $newMessage->ipv6 = Network::getIpv6Addr();
+        $id = $newMessage->save();
+        return $id > 0 ? Message::find($id)->toArray() : [];
     }
 
     /**
