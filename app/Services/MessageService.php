@@ -27,7 +27,7 @@ class MessageService
      */
     public function getMessage(int $messageListId, int $offset = 0) {
         $messages = Message::where([ 'message_list_id' => $messageListId ])
-            ->whereNotNull('removed_at')
+            ->whereNull('removed_at')
             ->orderBy('created_at', 'desc')
             ->limit(20)
             ->offset($offset)
