@@ -95,6 +95,10 @@ text common
     width: 240px;
     display: inline-block;
 }
+.text-340 {
+    width: 340px;
+    display: inline-block;
+}
 .text-520 {
     width: 520px;
     display: inline-block;
@@ -300,12 +304,29 @@ message list
     width: 250px;
 }
 .message_list .list.talk {
+    height: 68px;
     border-top: solid 1px #999;
     border-bottom: solid 1px #999;
     border-collapse: collapse;
 }
-.message_list .talk_name {
+.message_list .list.talk p {
+    width: 155px;
+    max-width: 155px;
+    margin: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    content: '...';
+    display: inline-block;
+}
+.message_list .list.talk span {
+    display: block;
+}
+.message_list .prof_img.talk_img {
     margin: 10px 0;
+}
+.message_list .talk_name {
+    margin: 10px 0 5px;
     display: inline-block;
 }
 
@@ -352,6 +373,9 @@ message contact list
 /***************************
 message
  ***************************/
+.message.message_list + .message {
+    width: 500px;
+}
 .message textarea {
     resize: none;
 }
@@ -361,4 +385,28 @@ message
 }
 .message .submit input[type=submit] {
     height: 100%;
+}
+#messageList .message {
+    margin: 10px 0;
+    max-width: 70%;
+}
+.message .prof_img {
+    background-size: 48px 48px;
+    background-repeat: no-repeat;
+    margin: 6px 16px;
+    width: 48px;
+    height: 48px;
+    display: inline-block;
+}
+.message .balloon {
+    padding: 5px 10px;
+    background-color: #ddd;
+    border-radius: 5px;
+}
+.message.self .balloon {
+    background-color: #8f8;
+}
+.message .balloon p {
+    margin: 0;
+    display: inline-block;
 }

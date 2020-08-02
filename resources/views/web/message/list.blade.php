@@ -11,9 +11,11 @@
     @foreach($list as $talk)
         <div class="list talk">
             <a href="{{ route('message', [ 'id' => $talk['id'] ]) }}">
-                <span class="talk_img" style="background-image: url('{{ asset(\App\System\Config\DefaultConfig::IMG_PROF) }}')"></span>
-                <span class="talk_name">{{ $talk['name'] }}</span>
-                <p>{{ $talk['message'] }}</p>
+                <span class="prof_img talk_img clear left" style="background-image: url('{{ asset(\App\System\Config\DefaultConfig::IMG_PROF) }}')"></span>
+                <p class="clear">
+                    <span class="talk_name clear">{{ $talk['name'] }}</span>
+                    <span class="">{{ $talk['message'] }}</span>
+                </p>
             </a>
         </div>
     @endforeach

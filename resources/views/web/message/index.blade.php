@@ -5,7 +5,7 @@
         @include('web/message/list')
     </div>
 
-    <div class="container message left">
+    <div class="message left">
         @include('web/message/talk')
     </div>
 @endsection
