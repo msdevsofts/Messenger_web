@@ -2,16 +2,18 @@
     <div id="messageList" class="container left">
         @if (!empty($messages))
             @foreach($messages as $msg)
-                <div class="message clear {{ $msg['member_id'] === $memberId ? 'self right' : '' }}" id="id{{ $msg['id'] }}">
+                <div class="message clear {{ $msg['member_id'] === $memberId ? 'self right' : 'other' }}" id="id{{ $msg['id'] }}">
                 @if ($msg['member_id'] !== $memberId)
                     <span class="prof_img left"
                           style="background-image: url('{{ asset(\App\System\Config\DefaultConfig::IMG_PROF) }}')"></span>
                 @endif
                     <div class="left">
-                        <div class="balloon">
-                            <p>{{ $msg['message'] }}</p>
+                        <div class="clear" style="{{ $msg['member_id'] === $memberId ? '' : 'overflow: inherited' }}">
+                            <span class="balloon {{ $msg['member_id'] === $memberId ? 'right' : '' }}">{{ $msg['message'] }}</span>
                         </div>
-                        <span class="at">{{ $msg['created_at'] }}</span>
+                        <div>
+                            <span class="at">{{ $msg['created_at'] }}</span>
+                        </div>
                     </div>
                 </div>
             @endforeach

@@ -406,7 +406,6 @@ message
 .message.self .balloon {
     background-color: #8f8;
 }
-.message .balloon p {
-    margin: 0;
-    display: inline-block;
+.message.other .balloon {
+    line-height: 2em;
 }
