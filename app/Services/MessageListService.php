@@ -24,31 +24,36 @@ class MessageListService
      * @return array メッセージ一覧
      */
     public function getMessageList(): array {
-        return MessageList::join('message_members', 'message_members.id', '=', 'message_lists.id')
-            ->leftJoinSub(
-                function ($query) {
-                    $query->select([
-                            DB::raw('distinct(message_list_id)'),
-                            'message',
-                            'created_at'
-                        ])
-                        ->from('messages')
-                        ->where(['member_id' => $this->memberId])
-                        ->whereNotNull('removed_at');
-                },
-                'latest_messages',
-                'latest_messages.message_list_id',
-                '=',
-                'message_lists.id'
-            )
-            ->where(['message_members.member_id' => $this->memberId])
-            ->orderBy('latest_messages.created_at', 'desc')
-            ->orderBy('message_lists.created_at', 'desc')
-            ->get([
+        return MessageList::select([
                 'message_lists.id',
                 'message_lists.name',
-                'latest_messages.message'
+                'messages.message',
+            'messages.created_at'
             ])
+            ->join('message_members', 'message_members.id', '=', 'message_lists.id')
+            ->join('messages', function ($join) {
+                $join->on('messages.message_list_id', '=', 'message_lists.id')
+                    ->whereIn('messages.id', function ($query) {
+                        $query->select([DB::raw('MAX(id) AS id')])
+                            ->from('messages')
+                            ->whereNull('removed_at')
+                            ->groupBy('message_list_id');
+                    });
+            })
+            ->where(['message_members.member_id' => $this->memberId])
+            ->unionAll(MessageList::join('message_members', 'message_members.id', '=', 'message_lists.id')
+                ->select([
+                    'message_lists.id',
+                    'message_lists.name',
+                    DB::raw('NULL AS message'),
+                    'message_lists.created_at'
+                ])
+                ->leftJoin('messages', 'messages.message_list_id', '=', 'message_lists.id')
+                ->where(['message_members.member_id' => $this->memberId])
+                ->whereNull('messages.removed_at')
+                ->whereNull('messages.id'))
+            ->orderBy('created_at', 'desc')
+            ->get([ '*' ])
             ->toArray();
     }
 
