@@ -12,7 +12,8 @@ class MessageListController extends Controller
 {
     protected $scripts = [
         'common/Overlay',
-        'message/new'
+        'message/new',
+        'message/adjustSize'
     ];
 
     public function index()
