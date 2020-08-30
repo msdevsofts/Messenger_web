@@ -95,6 +95,10 @@ text common
     width: 240px;
     display: inline-block;
 }
+.text-320 {
+    width: 320px;
+    display: inline-block;
+}
 .text-340 {
     width: 340px;
     display: inline-block;
@@ -305,9 +309,11 @@ message list
 }
 .message_list .list.talk {
     height: 68px;
-    border-top: solid 1px #999;
     border-bottom: solid 1px #999;
     border-collapse: collapse;
+}
+.message_list .list.talk:nth-child(3) {
+    border-top: solid 1px #999;
 }
 .message_list .list.talk p {
     width: 155px;
@@ -321,6 +327,9 @@ message list
 }
 .message_list .list.talk span {
     display: block;
+}
+.message_list .list.talk span:last-child {
+    color: #333;
 }
 .message_list .prof_img.talk_img {
     margin: 10px 0;
@@ -374,7 +383,7 @@ message contact list
 message
  ***************************/
 .message.message_list + .message {
-    width: 500px;
+    width: 480px;
 }
 .message textarea {
     resize: none;

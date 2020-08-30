@@ -13,7 +13,8 @@ use Illuminate\Http\Request;
 class MessageController extends Controller
 {
     protected $scripts = [
-        'message/PostMessage'
+        'message/PostMessage',
+        'message/adjustSize'
     ];
 
     /**

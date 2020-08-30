@@ -8,7 +8,7 @@
                           style="background-image: url('{{ asset(\App\System\Config\DefaultConfig::IMG_PROF) }}')"></span>
                 @endif
                     <div class="left">
-                        <div class="clear" style="{{ $msg['member_id'] === $memberId ? '' : 'overflow: inherited' }}">
+                        <div class="clear">
                             <span class="balloon {{ $msg['member_id'] === $memberId ? 'right' : '' }}">{{ $msg['message'] }}</span>
                         </div>
                         <div>
@@ -24,7 +24,7 @@
         {{ Form::open([ 'url' => route('message.post', [ 'id' => $id ]), 'method' => 'post', 'class' => 'clear' ]) }}
         {{ Form::token() }}
 
-        <span class="text-340 left">{{ Form::textarea('message', '', [ 'class' => 'awesome form-control', 'placeholder' => 'メッセージ', 'rows' => 1 ]) }}</span>
+        <span class="text-320 left">{{ Form::textarea('message', '', [ 'class' => 'awesome form-control', 'placeholder' => 'メッセージ', 'rows' => 1 ]) }}</span>
         <span class="text-120 submit left">{{ Form::submit('送信', [ 'class' => 'btn btn-primary form-control', 'name' => 'post' ]) }}</span>
         {{ Form::close() }}
     </div>
