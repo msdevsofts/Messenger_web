@@ -20,7 +20,8 @@ class Controller extends BaseController
             'common/String',
             'common/config/Default',
             'common/config/ApiUrl',
-            'common/SendData'
+            'common/SendData',
+            'common/Overlay'
         ];
 
         $this->viewData = [

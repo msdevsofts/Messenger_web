@@ -50,8 +50,7 @@ class MessageService
         $newMessage->message = $message;
         $newMessage->ipv4 = Network::getIpv4Addr();
         $newMessage->ipv6 = Network::getIpv6Addr();
-        $id = $newMessage->save();
-        return $id > 0 ? Message::find($id)->toArray() : [];
+        return $newMessage->save() ? Message::find($newMessage->id)->toArray() : [];
     }
 
     /**
