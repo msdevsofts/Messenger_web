@@ -10,6 +10,9 @@
     <script>
         Default.IMG_PROF = '{{ \App\System\Config\DefaultConfig::IMG_PROF }}';
         Default.NICKNAME = '{{ \App\System\Config\DefaultConfig::NICKNAME }}';
+
+        Profile.MEMBER_ID = {{ $memberId ?? 0 }};
+        Profile.UNIQUE_ID = '{{ $uniqueId ?? '' }}';
     </script>
 @endif
 

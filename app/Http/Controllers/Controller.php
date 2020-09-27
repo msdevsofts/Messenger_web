@@ -21,7 +21,8 @@ class Controller extends BaseController
             'common/config/Default',
             'common/config/ApiUrl',
             'common/SendData',
-            'common/Overlay'
+            'common/Overlay',
+            'prof/Profile'
         ];
 
         $this->viewData = [
