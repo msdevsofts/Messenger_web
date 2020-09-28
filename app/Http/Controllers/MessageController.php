@@ -13,7 +13,9 @@ use Illuminate\Http\Request;
 class MessageController extends Controller
 {
     protected $scripts = [
+        'message/BalloonBuilder',
         'message/PostMessage',
+        'message/message',
         'message/adjustSize'
     ];
 
@@ -43,9 +45,15 @@ class MessageController extends Controller
 
         $response = [];
         $message = $request->post('message') ?? '';
+        $lastLoadId = $request->post('last_load') ?? 0;
         if (!empty($message)) {
             $messageService = new MessageService($loginService->getMemberId());
-            $result = $messageService->postMessage($id, $message);
+
+            $result = [];
+            if ($messageService->postMessage($id, $message)) {
+                $result = $messageService->getLatestMessage($id, $lastLoadId);
+            }
+
             if (empty($result)) {
                 $response = [
                     'status' => 400,

@@ -37,20 +37,37 @@ class MessageService
     }
 
     /**
+     * 指定メッセージID移行のメッセージをすべて取得する
+     *
+     * @param int $messageListId メッセージリストID
+     * @param int $lastId 取得済み最終メッセージID
+     * @return array メッセージ
+     */
+    public function getLatestMessage(int $messageListId, int $lastId = 0) {
+        $messages = Message::where([ 'message_list_id' => $messageListId ])
+            ->whereNull('removed_at')
+            ->where('id', '>', $lastId)
+            ->orderBy('created_at', 'desc')
+            ->get([ 'id', 'member_id', 'message', 'created_at', 'updated_at' ])
+            ->toArray();
+        return array_reverse($messages);
+    }
+
+    /**
      * メッセージを投稿する
      *
      * @param int $messageListId メッセージリストID
      * @param string $message メッセージ
-     * @return array 投稿結果
+     * @return bool 投稿結果
      */
-    public function postMessage(int $messageListId, string $message): array {
+    public function postMessage(int $messageListId, string $message): bool {
         $newMessage = new Message();
         $newMessage->message_list_id = $messageListId;
         $newMessage->member_id = $this->memberId;
         $newMessage->message = $message;
         $newMessage->ipv4 = Network::getIpv4Addr();
         $newMessage->ipv6 = Network::getIpv6Addr();
-        return $newMessage->save() ? Message::find($newMessage->id)->toArray() : [];
+        return $newMessage->save();
     }
 
     /**
