@@ -27,8 +27,8 @@ class PostMessage extends SendData {
             }
         });
 
-        let messageList = $('#messageList');
-        messageList.animate({ scrollTop: messageList.height() }, 'fast');
+        let messageList = document.getElementById('messageList');
+        $('#messageList').animate({ scrollTop: messageList.scrollHeight - messageList.clientHeight }, 'fast');
     }
 
     onError() {
