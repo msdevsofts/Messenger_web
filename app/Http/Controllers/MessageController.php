@@ -16,7 +16,8 @@ class MessageController extends Controller
         'message/BalloonBuilder',
         'message/PostMessage',
         'message/message',
-        'message/adjustSize'
+        'message/adjustSize',
+        'message/new'
     ];
 
     /**
