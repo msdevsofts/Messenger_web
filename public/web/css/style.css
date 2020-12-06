@@ -146,6 +146,10 @@ login
     margin: 0 auto;
 }
 
+#login form {
+    height: 178px;
+}
+
 #login input {
     margin: 10px 0;
 }

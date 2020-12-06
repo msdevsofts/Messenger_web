@@ -7,6 +7,8 @@ $(function() {
         let isNone = pwConf.css('display') === 'none';
         $(this).text(isNone ? '登録する' : 'ログインする');
         $('input:submit').val(isNone ? 'ログイン' : '登録');
-        console.log(ret);
+
+        let height = isNone ? 178 : 226;
+        $('form').css({'height': height});
     })
 });
